@@ -1,0 +1,23 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+div{
+    display: flexbox;
+}
+table{
+    margin-inline: 10%;
+    width: 80%;
+    border: 1 solid black;
+    text-align: center;
+}
+table ,th,td{
+    padding: 10px;
+}
+table th{
+    background-color: #4fa6b1;
+}
+table tr:nth-child(even){
+    background-color: antiquewhite;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Webpage</title>
+</head>
+<body>
+    <button>+ New</button>
+
+    <h1>My Webpage</h1>
+    <h1>List of Products</h1>
+    <ul>
+        {% for product in products %}  <li>{{ product.name }}</li>
+        <li>{{ product.image }}</li>
+        <h1>{{ product.name }}</h1>
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        <img src="{{ product.image }}" alt="{{ product.name }}">
+
+        <p>{{ product.price }}</p>
+        {% endfor %}
+    </ul>
+    <table>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+        {% for product in products %}
+
+            <tr>
+                <td><img src="{{product.image}}" alt="{{product.name}}"></td>
+                <td>{{product.name}}</td>
+                <td>{{product.price}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <form method="post">  {% csrf_token %}  
+        <label for="name">Product Name</label>
+        <input type='text' placeholder='Ex: Keyboard ...etc' id='name' name='name'></input>
+        <label for=""></label>
+        <input type='text'></input>
+        <input type='text'></input>
+        <input type='text'></input>
+        <input type="image" src="" alt="">
+        <label for=""></label>
+        <button type="submit">Add Product</button>
+    </form>
+</body>
+</html>

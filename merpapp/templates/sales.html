@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "styles/main.css" %}">
+    <title>Sales</title>
+</head>
+<body>
+    <h1>Sales Page</h1>
+    <button>+ New</button>
+    <input type="search" name="" id="">
+    <button>Import</button>
+    <button>Export</button>
+    <h3>order table</h3>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Cost</th>
+            <th>Number</th>
+            <th>bla</th>
+        </tr>
+        {% for  order in orders %}
+        <tr>
+            <td>{{order.order_id}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>customers table</h3>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Cost</th>
+            <th>Number</th>
+            <th>bla</th>
+        </tr>
+        {% for  customer in customers %}
+        <tr>
+            <td>{{customer.customer_id}}</td>
+            <td>
+                {{customer.location_id}}
+                {% if  customer.location_id != None%}
+                {% for location in locations %}
+                    {% if location.location_id == customer.location_id %}
+                        {{location.address1}}
+                    {% endif %}
+                {% endfor %}
+                {% else %}
+                    /
+                {% endif %}
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+    <h3>location table</h3>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Cost</th>
+            <th>Number</th>
+            <th>bla</th>
+        </tr>
+        {% for  location in locations %}
+        <tr>
+            <td>{{location.location_id}}</td>
+            <td>{{location.address1}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+    <div>
+        <h3>ADD CUSTOMER</h3>
+        <form method='GET' action="newCustomer">
+            {% csrf_token %}
+            <label for="FullName">Full Name</label>
+            <input type="text" id='FullName' name='FullName'>
+            <label for="Address1">Address 1</label>
+            <input type="text" id='Address1' name='Address1'>
+            <label for="Address2">Address 2</label>
+            <input type="text" id='Address2' name='Address2'>
+            <label for="City">City</label>
+            <input type="text" id='City' name='City'>
+            <label for="Country">Country</label>
+            <input type="text" id='Country' name='Country'>
+            <label for="State">State</label>
+            <input type="text" id='State' name='State'>
+            <input type="submit" value="ADD">
+        </form>
+    </div>
+    <div>
+        <h3>add order</h3>
+        <form action="newOrder">
+            <select name="Customers" id="Customers">
+                {% for customer in customers %}
+                    <option value="{{customer.full_name}}">{{customer.full_name}}</option>
+                {% endfor %}
+            
+            </select>
+            <label for="">Barcode</label>
+            <input type="text">
+            <input type="number" name="" id="">
+        </form>
+    </div>
+</body>
+</html>
