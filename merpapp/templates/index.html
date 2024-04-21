@@ -1,48 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>My Webpage</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "styles/main.css" %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+    <title>Document</title>
 </head>
 <body>
-    <button>+ New</button>
+    <div class="bar" id="bar">
+        <h1>MERP</h1>
+        <a href="/inventory">Inventory</a>
+        <a href="/sales">Sales</a>
+        <a href="/production">Producation</a>
+        <a href="/finance">Finance</a>
+        <a href="/hr">HR</a>
+        <button onclick="min()">Hide</button>
+        <a href="">Setting</a>
+    </div>
+    <div class="content">
+        <div class="one">
+            <h2>Title</h2>
+            <ul>
+                <li><a href="">APPS</a></li>
+                <li><a href="">APPS</a></li>
+                <li><a href="">APPS</a></li>
+                <li><a href="">APPS</a></li>
+                
+            </ul>
+            <h3>Profile</h3>
+        </div>
+        <div class="two">
+            <button onclick="addNew()">New</button>
+            <button>Import</button>
+            <button onclick="exportTableToCSV('data', 'export.csv')">Export</button>
+            <button onclick="exportPDF()">Download PDF</button>
+            <input type="search" name="" id="">
+            <div>
+                <button>aaaa</button>
+                <ul>
+                    <li>aaa</li>
+                    <li>aaa</li>
+                    <li>aaa</li>
+                </ul>
+            </div>
+        </div>
+        <div class="data">
+            <table id="data">
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Cost</th>
+                    <th>On hand</th>
+                </tr>
+                {% for product in products %}  
+                
+                <td><img src="{{ product.image }}" alt="{{ product.name }}"></td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.cost }}</td>
+                <td>0</td>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div class="addNew" id="addNew">
+        <h1>gfdgfdgdf</h1>
+        <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'London')">London</button>
+            <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+            <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+          </div>
+        <form action="">
+            
+            <div id="London" class="tabcontent">
+                <label for="">Price</label>
+                <input type="number" name="" id="">
+                <label for="">Cost</label>
+                <input type="number" name="" id="">
+              </div>
+              
+              <div id="Paris" class="tabcontent">
+                <h3>Paris</h3>
+                <p>Paris is the capital of France.</p> 
+              </div>
+              
+              <div id="Tokyo" class="tabcontent">
+                <h3>Tokyo</h3>
+                <p>Tokyo is the capital of Japan.</p>
+              </div>
+            <label for="">Product name</label>
+            <input type="text">
+            <label for="">Price</label>
+            <input type="text" name="" id="">
+            <input type="file" name="image" id="">
+            <select name="" id="">
+                <option value="">Uncategorized</option>
+            </select>
 
-    <h1>My Webpage</h1>
-    <h1>List of Products</h1>
-    <ul>
-        {% for product in products %}  <li>{{ product.name }}</li>
-        <li>{{ product.image }}</li>
-        <h1>{{ product.name }}</h1>
-        <img src="{{ product.image.url }}" alt="{{ product.name }}">
-        <img src="{{ product.image }}" alt="{{ product.name }}">
+            <input type="checkbox" name="" id="">
+            <label for="">Can be sold</label>
+            <input type="checkbox" name="" id="">
+            <label for="">Can be sold</label>
 
-        <p>{{ product.price }}</p>
-        {% endfor %}
-    </ul>
-    <table>
-        <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Price</th>
-        </tr>
-        {% for product in products %}
-
-            <tr>
-                <td><img src="{{product.image}}" alt="{{product.name}}"></td>
-                <td>{{product.name}}</td>
-                <td>{{product.price}}</td>
-            </tr>
-        {% endfor %}
-    </table>
-    <form method="post">  {% csrf_token %}  
-        <label for="name">Product Name</label>
-        <input type='text' placeholder='Ex: Keyboard ...etc' id='name' name='name'></input>
-        <label for=""></label>
-        <input type='text'></input>
-        <input type='text'></input>
-        <input type='text'></input>
-        <input type="image" src="" alt="">
-        <label for=""></label>
-        <button type="submit">Add Product</button>
-    </form>
+        </form>
+    </div>
+    {% load static %}
+    <script src="{% static "scripts/main.js" %}"></script>
 </body>
 </html>
