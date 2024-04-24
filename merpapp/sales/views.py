@@ -31,3 +31,9 @@ def newCustomer(request):
     Customers.objects.create(full_name=fullname,location_id=location)
     context = {'data':address1}
     return render(request,'newCustomer.html',context)
+
+
+def customers(request):
+    return render(request,'customers.html')
+
+

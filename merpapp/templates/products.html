@@ -7,7 +7,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static "styles/main.css" %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
-    <title>Document</title>
+    <title>Products</title>
 </head>
 <body>
     <div class="bar" id="bar">
@@ -23,28 +23,28 @@
     <div class="content">
         <div class="one">
             <h2>Title</h2>
-            <ul>
-                <li><a href="/">inventory</a></li>
-                <li><a href="/purchase">Purchase</a></li>
-                <li><a href="/products">Products</a></li>
-                <li><a href="/vendors">Vendors</a></li>
-                
-                
-            </ul>
-            <h3>Profile</h3>
+            <span>
+                <a href="/">inventory</a>
+                <a href="/purchase">Purchase</a>
+                <a href="/products">Products</a>
+                <a href="/vendors">Vendors</a>      
+            </span>
+            <a>Profile</a>
         </div>
         <div class="two">
-            <button onclick="addNew()">New</button>
-            <button>Import</button>
-            <button onclick="exportTableToCSV('data', 'export.csv')">Export</button>
-            <button onclick="exportPDF()">Download PDF</button>
+            <div>
+                <button onclick="addNew()">New</button>
+                <button>Import</button>
+                <button onclick="exportTableToCSV('data', 'export.csv')">Export</button>
+                <button onclick="exportPDF()">Download PDF</button>
+            </div>
             <input type="search" name="" id="">
             <div>
-                <button>aaaa</button>
-                <ul>
-                    <li>aaa</li>
-                    <li>aaa</li>
-                    <li>aaa</li>
+                <button onclick="show_options()">Filter</button>
+                <ul id="options">
+                    <li><label for="filter">option 1</label><input type="checkbox" name="filter" id="filter" onclick="filter_options()"></li>
+                    <li><label for="filter">option 2</label><input type="checkbox" name="" id=""></li>
+                    <li><label for="filter">option 3</label><input type="checkbox" name="" id=""></li>
                 </ul>
             </div>
         </div>
@@ -64,6 +64,11 @@
                 <td>{{ product.name }}</td>
                 <td>{{ product.price }}</td>
                 <td>{{ product.cost }}</td>
+                {% for category in categories %}
+                    {% if product.category_id == category.category_id %}
+                        <td>{{ category.name }}</td>
+                    {% endif %}
+                {% endfor %}
                 <td>0</td>
                 {% endfor %}
             </table>

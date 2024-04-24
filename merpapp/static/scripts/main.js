@@ -78,4 +78,17 @@ function exportTableToCSV(tableId, filename) {
     link.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvContent);
     link.download = filename || 'table_data.csv';
     link.click();
+}
+
+function show_options(){
+    filter_options = document.getElementById('options');
+    filter_options.style.display = 'block';
+}
+
+function filter_options(){
+  alert(1)
+  options = document.getElementById('filter')
+  if(options.checked){
+    alert(2)
   }
+}
