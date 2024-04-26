@@ -50,7 +50,16 @@ def products(request):
     return render(request,'products.html',context)
 
 
+def addnewproduct(request):
+    name = request.GET.get('FullName')
+    price = request.GET.get('Address1')
+    cost = request.GET.get('Address2')
+    category = request.GET.get('City')
 
+    
+    Product.objects.create()
+    context = {}
+    return render(request,'newCustomer.html',context)
 
 
 

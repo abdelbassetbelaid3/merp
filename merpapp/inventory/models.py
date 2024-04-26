@@ -14,6 +14,14 @@ class Vendor(models.Model):
     lead_time = models.IntegerField()
     note = models.TextField()
 
+class StorageLocation(models.Model):
+    storage_location_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=20)
+    shelf_number = models.IntegerField()
+    level_number = models.IntegerField()
+    storage_capacity = models.IntegerField()
+
+
 
     
 
@@ -28,6 +36,13 @@ class Product(models.Model):
     category_id = models.IntegerField(default='1')
     class Meta:
         db_table = 'inventory_product'
+
+class Inventory(models.Model):
+    Inventory_id = models.AutoField(primary_key=True)
+    location_id = models.ForeignKey(StorageLocation, on_delete=models.SET_NULL, null=True, blank=True)
+    product_id = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, blank=True)
+    quantity = models.IntegerField()
+    # LOT NUMBER 
 
 
 class Purchase_order(models.Model):

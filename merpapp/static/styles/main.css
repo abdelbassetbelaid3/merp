@@ -14,16 +14,28 @@ body{
     flex-direction: row;
     height: 100%;
 }
+.bar i{
+    font-size: 25px;
+}
+.content i{
+    font-size: 20px;
+}
 .bar{
     background-color: #0E46A3;
     color: aliceblue;
     width: 20%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     height: 100%;
 }
 .bar h1{
     text-align: center;
+    margin: 8px auto 15px auto;
+}
+.bar div{
+    display: flex;
+    flex-direction: column;
 }
 .bar a{
     color: #FFFBDA;
@@ -83,22 +95,25 @@ body{
 }
 .content .two{
     background-color: #a5c4f7;
+    padding: 5px 20px;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 .content .two button{
     background-color: #1565eb;
     color: #FFFBDA;
     border: none;
-    border-radius: 2px;
-    padding: 3px 5px;
+    border-radius: 6px;
+    font-size: 20px;
+    padding: 4px 8px;
     margin: 5px 3px;
     font-size: 0.9rem;
 }
 .content input{
-    flex: 2;
-    margin-inline: 10%;
+    flex-grow: 5;
+    margin: 5px 3px;
+    
 }
 .content .two #options {
     display: none;
@@ -140,17 +155,39 @@ body{
     display: none;
 
 }
-.addNew label , input{
+.addNew label , input[type=text]{
     display: block;
 }
-.addNew form input{
-    width: 50%;
-    height: 20px;
+.addNew .head{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px 15px;
+    align-items: center;
 }
-
+.addNew i{
+    font-size: 25px;
+}
+.addNew .main{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.addNew .main div{
+    flex-grow: 4;
+}
+.addNew .main div > label{
+    display: block;
+}
+.addNew .main div > label ~ label{
+    display: inline;
+}
 
 
 /* Style the tab */
+#London{
+    display: block;
+}
 .tab {
     overflow: hidden;
     border: 1px solid #ccc;
