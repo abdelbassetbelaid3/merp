@@ -16,7 +16,7 @@
     <div class="bar" id="bar">
         
         <div>
-            <h1>MERP</h1>
+            <h1>MERP</h1>   
             <a href="/inventory"><i class="fa-solid fa-warehouse"></i>  Inventory</a>
             <a href="/sales"><i class="fa-solid fa-dollar-sign"></i> Sales</a>
             <a href="/production"><i class="fa-solid fa-industry"></i> Producation</a>
@@ -72,17 +72,18 @@
                     <th>On hand</th>
                 </tr>
                 {% for product in products %}  
-                
-                <td><img src="{{ product.image }}" alt="{{ product.name }}"></td>
-                <td>{{ product.name }}</td>
-                <td>{{ product.price }}</td>
-                <td>{{ product.cost }}</td>
+                <tr>
+                    <td><img src="{{ product.image }}" alt="{{ product.name }}"></td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.cost }}</td>
                 {% for category in categories %}
                     {% if product.category_id == category.category_id %}
-                        <td>{{ category.name }}</td>
+                            <td>{{ category.name }}</td>
                     {% endif %}
                 {% endfor %}
-                <td>0</td>
+                    <td>0</td>
+                </tr>
                 {% endfor %}
             </table>
         </div>
@@ -97,7 +98,7 @@
             <div class="main">
                 <div>
                     <label for="name">Product name</label>
-                    <input type="text" id="name">
+                    <input type="text" name="name" id="name">
                     <input type="checkbox" name="sold" id="sold">
                     <label for="sold">Can be sold</label>
                     <br>
@@ -114,12 +115,13 @@
                 <a class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</a>
               </div>
             <div id="London" class="tabcontent">
+                
                 <label for="price">Price</label>
                 <input type="number" name="price" id="price">
                 <label for="cost">Cost</label>
                 <input type="number" name="cost" id="cost">
                 <select name="category" id="category">
-                    <option value="">Uncategorized</option>
+                    <option value="Uncategorized">Uncategorized</option>
                 </select>
               </div>
               
@@ -131,6 +133,8 @@
 
               </div>
 
+              <input type="submit" value="Add Another">
+              <input type="submit" value="Save">
 
         </form>
     </div>

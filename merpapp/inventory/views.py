@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework.response import Response
-from .models import Product , Categories
-from .serializers import ProductSerializer , CategorySerializer
+from .models import Product , Categories, Vendor
+from .serializers import ProductSerializer , CategorySerializer , VendorSerilaizer
 from rest_framework.decorators import api_view, renderer_classes
 import io
 from django.http import FileResponse
@@ -13,24 +13,35 @@ from reportlab.pdfgen import canvas
 @api_view(('GET',))
 def index(request):
     products = Product.objects.all()  # Fetch all products from DB
+    
     if Categories.objects.filter(name='uncategorized').exists():
         
-        categories = Categories.objects.all()
+        pass
     else:
         Categories.objects.create(category_id='1',name='uncategorized')
-        categories = Categories.objects.all()
+        
+    categories = Categories.objects.all()
 
+    product_serializer = ProductSerializer(products, many=True)  # Serialize data
+    category_serializer = CategorySerializer(categories, many=True)  # Serialize data
 
-    serializer = ProductSerializer(products, many=True)  # Serialize data
-    context = {'products': serializer.data} 
+    context = {'products': product_serializer.data,'categories': category_serializer.data} 
     return render(request,'index.html',context) # Render data in template
 
 def purchase(request):
     return render(request,'purchase.html')
 
+def newPurchase(request):
+    pass
 
 def vendors(request):
-    return render(request,'vendors.html')
+    vendors = Vendor.objects.all()
+    vendors_serialier = VendorSerilaizer(vendors,many = True)
+    context = {'vendors':vendors_serialier.data}
+    return render(request,'vendors.html',context)
+
+def newVendor(request):
+    pass
 
 def products(request):
     products = Product.objects.all()  # Fetch all products from DB
@@ -50,15 +61,16 @@ def products(request):
     return render(request,'products.html',context)
 
 
-def addnewproduct(request):
-    name = request.GET.get('FullName')
-    price = request.GET.get('Address1')
-    cost = request.GET.get('Address2')
-    category = request.GET.get('City')
-
+def newProduct(request):
+    name = request.GET.get('name')
+    price = request.GET.get('price')
+    cost = request.GET.get('cost')
+    image = request.GET.get('image')
+    category = request.GET.get('category')
+    print(name)
     
-    Product.objects.create()
-    context = {}
+    Product.objects.create(price=price,name=name,cost=cost,image=image)
+    context = {'data':price}
     return render(request,'newCustomer.html',context)
 
 

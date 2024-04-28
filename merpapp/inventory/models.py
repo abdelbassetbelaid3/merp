@@ -1,6 +1,6 @@
 from django.db import models
 from datetime import date
-
+#from settings.models import Location
 # Create your models here.
 
 class Categories(models.Model):
@@ -10,6 +10,7 @@ class Categories(models.Model):
 class Vendor(models.Model):
     vendor_id = models.AutoField(primary_key=True)
     full_name = models.CharField(max_length=100)
+    #location_id = models.ForeignKey(Location,on_delete=models.SET_NULL)
     shipping_cost = models.DecimalField(max_digits=12, decimal_places=2,default='0')
     lead_time = models.IntegerField()
     note = models.TextField()
@@ -44,7 +45,9 @@ class Inventory(models.Model):
     quantity = models.IntegerField()
     # LOT NUMBER 
 
-
+class InventoryTransaction(models.Model):
+    inventory_transaction_id = models.AutoField(primary_key=True)
+    date = models.DateField()
 class Purchase_order(models.Model):
     purchase_order_id = models.AutoField(primary_key=True)
     order_date = models.DateField()
