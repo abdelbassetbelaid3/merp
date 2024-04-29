@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "styles/main.css" %}">
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+    <title>Products</title>
+</head>
+<body>
+    <div class="bar" id="bar">
+        
+        <div>
+            <h1>MERP</h1>   
+            <a href="/inventory"><i class="fa-solid fa-warehouse"></i>  Inventory</a>
+            <a href="/sales"><i class="fa-solid fa-dollar-sign"></i> Sales</a>
+            <a href="/production"><i class="fa-solid fa-industry"></i> Producation</a>
+            <a href="/finance"><i class="fa-solid fa-percent"></i> Finance</a>
+            <a href="/hr"><i class="fa-solid fa-people-group"></i> HR</a>
+        </div>
+        <div>
+            <button onclick="min()"><i class="fa-solid fa-chevron-left"></i><i class="fa-solid fa-chevron-right"></i>Hide</button>
+            <a href=""><i class="fa-solid fa-gear"></i> Setting</a>
+        </div>
+    </div>
+    <div class="content">
+        <div class="one">
+            <h2>Sales</h2>
+            <span>
+                <a href="/inventory">Overview</a>
+                <a href="/purchase">Customers</a>
+                <a href="/products">Invoice</a>
+                <a href="/vendors">sales</a>
+                <a href="/vendors">Configuration</a>
+            </span>
+            <a>Profile</a>
+        </div>
+        <div class="two">
+            <div class="update">
+                <button onclick="addNew()">New</button>
+                <button><i class="fa-solid fa-download"></i> Import</button>
+                <button onclick="exportTableToCSV('data', 'export.csv')"><i class="fa-solid fa-upload"></i> Export</button>
+                <button onclick="exportPDF()">Download PDF</button>
+            </div>
+            
+            <input type="search" name="search" id="search">
+            
+            <div class="view">
+                <button onclick="show_options()">Filter</button>
+                <ul id="options">
+                    <li><label for="filter">option 1</label><input type="checkbox" name="filter" id="filter" onclick="filter_options()"></li>
+                    <li><label for="filter">option 2</label><input type="checkbox" name="" id=""></li>
+                    <li><label for="filter">option 3</label><input type="checkbox" name="" id=""></li>
+                </ul>
+                <button><i class="fa-regular fa-border-all"></i></button>
+                <button><i class="fa-light fa-border-all"></i></button>
+            </div>
+        </div>
+        <div class="data">
+            <h3>customers table</h3>
+    <table id="data">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Cost</th>
+            <th>Number</th>
+            <th>bla</th>
+        </tr>
+        {% for  customer in customers %}
+        <tr>
+            <td>{{customer.customer_id}}</td>
+            <td>
+                {{customer.location_id}}
+                {% if  customer.location_id != None%}
+                {% for location in locations %}
+                    {% if location.location_id == customer.location_id %}
+                        {{location.address1}}
+                    {% endif %}
+                {% endfor %}
+                {% else %}
+                    /
+                {% endif %}
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        {% endfor %}
+    </table>
+        </div>
+    </div>
+    <div class="addNew" id="addNew">
+        <form method="GET" action="newProduct">
+            {% csrf_token %}
+            <div class="head">
+                <h1>Create New product</h1>
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div class="main">
+                <div>
+                    <label for="name">Product name</label>
+                    <input type="text" name="name" id="name">
+                    <input type="checkbox" name="sold" id="sold">
+                    <label for="sold">Can be sold</label>
+                    <br>
+                    <input type="checkbox" name="purchase" id="purchase">
+                    <label for="purchase">Can be purchase</label>
+                </div>
+                <input type="file" name="image" id="image">
+            </div>
+
+
+            <div class="tab">
+                <a class="tablinks" onclick="openCity(event, 'London')">Genrel Information</a>
+                <a class="tablinks" onclick="openCity(event, 'Paris')">Paris</a>
+                <a class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</a>
+              </div>
+            <div id="London" class="tabcontent">
+                
+                <label for="price">Price</label>
+                <input type="number" name="price" id="price">
+                <label for="cost">Cost</label>
+                <input type="number" name="cost" id="cost">
+                <select name="category" id="category">
+                    <option value="Uncategorized">Uncategorized</option>
+                </select>
+              </div>
+              
+              <div id="Paris" class="tabcontent">
+
+              </div>
+              
+              <div id="Tokyo" class="tabcontent">
+
+              </div>
+
+              <input type="submit" value="Add Another">
+              <input type="submit" value="Save">
+
+        </form>
+    </div>
+    {% load static %}
+    <script src="{% static "scripts/main.js" %}"></script>
+</body>
+</html>

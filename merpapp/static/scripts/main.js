@@ -27,7 +27,8 @@ function openCity(evt, cityName) {
 
 
 function exportPDF() {
-  const element = document.getElementById("pdfContent");
+  alert(1)
+  const element = document.getElementById("data");
   html2pdf()
     .from(element)
     .save();

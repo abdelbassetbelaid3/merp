@@ -38,8 +38,19 @@ body{
     flex-direction: column;
 }
 .bar a{
+    padding: 10px;
     color: #FFFBDA;
     text-decoration: none;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+}
+.bar button{
+    padding: 10px;
+    color: #FFFBDA;
+    background-color: #0E46A3;
+    text-decoration: none;
+    border: none;
     margin: 0 auto;
     text-align: center;
     width: 100%;
@@ -135,26 +146,38 @@ body{
 .content .data table{
     border-collapse: collapse;
     width: 100%;
+    
 }
 .content .data table th , td{
     text-align: left;
-    padding: 8px;
+    padding: 18px;
+}
+.content .data table th{
+    background-color: #0E46A3;
+    color: #f1f1f1;
 }
 .content .data table tr:nth-child(odd){
     background-color: #c9dcfa;
 }
+.content .data table tr:hover {
+    background-color: #0E46A3;
+    color: #f1f1f1;
+}
+
 #addNew{
     width: 80%;
-    background-color: #0E46A3;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
     border-radius: 6px;
     position: fixed;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%,-50%);
     transition: 0.5s;
     display: none;
 
 }
+
 .addNew label , input[type=text]{
     display: block;
 }
@@ -222,6 +245,7 @@ body{
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
+    height: 150px;
   }
 
 

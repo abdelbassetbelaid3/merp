@@ -18,7 +18,7 @@ def index(request):
         'customers': serializerCustomers.data,
         'locations': serializerLocations.data,
         }
-    return render(request,'sales.html',context) # Render data in template
+    return render(request,'sales/index.html',context) # Render data in template
 
 def newCustomer(request):
     fullname = request.GET.get('FullName')
