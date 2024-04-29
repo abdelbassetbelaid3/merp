@@ -73,3 +73,9 @@ class Products(models.Model):
 
     class Meta:
         db_table = 'products'
+
+
+
+class ProductsAndVendors(models.Models):
+    product_id = models.ForeignKey(Product,on_delete=models.SET_NULL)
+    vendor_id = models.ForeignKey(Vendor,on_delete=models.SET_NULL)

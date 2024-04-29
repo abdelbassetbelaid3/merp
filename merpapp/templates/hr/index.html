@@ -9,60 +9,50 @@
   <link rel="stylesheet" href="{% static 'styles/custom.css' %}">
 </head>
 <body>
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark custom" style="width: 280px;">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-          <span class="fs-4">Sidebar</span>
-        </a>
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
-            <a href="#" class="nav-link active" aria-current="page">
-              <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
-              Home
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-white">
-              <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-              Dashboard
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-white">
-              <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-              Orders
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-white">
-              <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-              Products
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-white">
-              <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-              Customers
-            </a>
-          </li>
-        </ul>
-        <hr>
-        <div class="dropdown">
-          <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-            <strong>mdo</strong>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-            <li><a class="dropdown-item" href="#">New project...</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
-          </ul>
-        </div>
-    </div>
-
+  <div class="container-fluid d-flex justify-content-center padding">
+    
+    <div class="col-md-6 col-lg-4">
+                <div class="card">
+                  <div class="card-header">
+                    <h5 class="card-title">Number of <strong>applicants</strong></h5>
+                        <a href="#" data-abc="true"><i class="fa fa-ellipsis-v"></i></a>
+                  </div>
+    
+                  <div class="card-body card-body">
+                    <div class="text-center py-20">
+                      <div data-provide="peity" data-type="donut" data-size="150" data-inner-radius="55" data-fill="#efb3e6,#ffdf7c,#b2def7" style="display: none;">953,613,169</div><svg class="peity" height="150" width="150"><path d="M 75 0 A 75 75 0 1 1 52.146854305878314 146.43342167279437 L 58.24102649097743 127.38450922671586 A 55 55 0 1 0 75 20" fill="#efb3e6"></path><path d="M 52.146854305878314 146.43342167279437 A 75 75 0 0 1 31.9107235882174 13.613403268229668 L 43.40119729802609 29.983162396701758 A 55 55 0 0 0 58.24102649097743 127.38450922671586" fill="#ffdf7c"></path><path d="M 31.9107235882174 13.613403268229668 A 75 75 0 0 1 74.99999999999999 0 L 74.99999999999999 20 A 55 55 0 0 0 43.40119729802609 29.983162396701758" fill="#b2def7"></path></svg>
+                    </div>
+    
+                    <ul class="list-inline">
+                      <li class="flexbox mb-1">
+                        <div>
+                          <span class="badge badge-dot badge-lg mr-1" style="background-color: #efb3e6"></span>
+                          <span>PHP Developer</span>
+                        </div>
+                        <div><span>22</span></div>
+                      </li>
+    
+                      <li class="flexbox mb-1">
+                        <div>
+                          <span class="badge badge-dot badge-lg mr-1" style="background-color: #ffdf7c"></span>
+                          <span>JAVA Developer</span>
+                        </div>
+                        <div><span>12</span></div>
+                      </li>
+    
+                      <li class="flexbox">
+                        <div>
+                          <span class="badge badge-dot badge-lg mr-1" style="background-color: #b2def7"></span>
+                          <span>PHP Architect</span>
+                        </div>
+                        <div><span>4</span></div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+    
+              </div>
   <script src="{% static 'scripts/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>
