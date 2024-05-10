@@ -19,8 +19,8 @@ class Orders(models.Model):
     order_id = models.AutoField(primary_key=True)
     ref_code = models.TextField()
     order_status = models.CharField(max_length=20)
-    Customers_id = models.ForeignKey(Customers, on_delete=models.SET_NULL, null=True, blank=True)
-    order_date = models.DateField(auto_now_add=True, default= timezone.now)  # Assuming order_date should be set on creation
+    customers_id = models.ForeignKey(Customers, on_delete=models.SET_NULL, null=True, blank=True)
+    order_date = models.DateField(auto_now=True)  # Assuming order_date should be set on creation
     delivered_date = models.DateField(default=None)  # Or use datetime.date.min for 
     delivery_satus = models.CharField(max_length=20,null=True, blank=True,default='Draft')
 class OrderItems(models.Model):

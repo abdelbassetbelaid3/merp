@@ -16,7 +16,7 @@
     <div class="bar" id="bar">
         
         <div>
-            <h1>MERP</h1>   
+            <h1 onclick='min()'><i class="fa-solid fa-bars"></i>MERP</h1>
             <a href="/inventory"><i class="fa-solid fa-warehouse"></i>  Inventory</a>
             <a href="/sales"><i class="fa-solid fa-dollar-sign"></i> Sales</a>
             <a href="/production"><i class="fa-solid fa-industry"></i> Producation</a>
@@ -24,7 +24,6 @@
             <a href="/hr"><i class="fa-solid fa-people-group"></i> HR</a>
         </div>
         <div>
-            <button onclick="min()"><i class="fa-solid fa-chevron-left"></i><i class="fa-solid fa-chevron-right"></i>Hide</button>
             <a href=""><i class="fa-solid fa-gear"></i> Setting</a>
         </div>
     </div>
@@ -61,34 +60,22 @@
                 <button><i class="fa-light fa-border-all"></i></button>
             </div>
         </div>
-        <div class="data">
-            <h3>customers table</h3>
+    <div class="data">
     <table id="data">
         <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Cost</th>
             <th>Number</th>
-            <th>bla</th>
+            <th>Customer</th>
+            <th>Order Date</th>
+            <th>Delivery Status</th>
+            <th>Delivery Date</th>
         </tr>
-        {% for  customer in customers %}
+        {% for  order in orders %}
         <tr>
-            <td>{{customer.customer_id}}</td>
-            <td>
-                {{customer.location_id}}
-                {% if  customer.location_id != None%}
-                {% for location in locations %}
-                    {% if location.location_id == customer.location_id %}
-                        {{location.address1}}
-                    {% endif %}
-                {% endfor %}
-                {% else %}
-                    /
-                {% endif %}
-            </td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{order.ref_code}}</td>
+            <td>{{order.customers_id}}</td>
+            <td>{{order.order_date}}</td>
+            <td>{{order.delivery_satus}}</td>
+            <td>{{order.delivered_date}}</td>
         </tr>
         {% endfor %}
     </table>

@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'merpapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dbmerp',
+        'NAME': 'merpbase',
         'USER': 'postgres',
         'PASSWORD': 'admin',
         'HOST': 'localhost',
