@@ -12,7 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
     <title>Products</title>
 </head>
-<body>
+<body id="page">
     <div class="bar" id="bar">
         
         <div>
@@ -43,6 +43,7 @@
         <div class="two">
             <div class="update">
                 <button onclick="addNew()">New</button>
+                {% comment %} <a href="{% url 'download_data' %}?format=excel" class="btn btn-success">Download Excel</a> {% endcomment %}
                 <button><i class="fa-solid fa-download"></i> Import</button>
                 <button onclick="exportTableToCSV('data', 'export.csv')"><i class="fa-solid fa-upload"></i> Export</button>
                 <button onclick="exportPDF()">Download PDF</button>
@@ -72,7 +73,7 @@
                     <th>On hand</th>
                 </tr>
                 {% for product in products %}  
-                <tr>
+                <tr onclick=alert(2)>
                     <td><img src="{{ product.image }}" alt="{{ product.name }}"></td>
                     <td>{{ product.name }}</td>
                     <td>{{ product.price }}</td>
@@ -111,7 +112,7 @@
 
             <div class="tab">
                 <a class="tablinks" onclick="openCity(event, 'London')">Genrel Information</a>
-                <a class="tablinks" onclick="openCity(event, 'Paris')">Paris</a>
+                <a class="tablinks" onclick="openCity(event, 'Paris')">Inventory</a>
                 <a class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</a>
               </div>
             <div id="London" class="tabcontent">
@@ -126,7 +127,14 @@
               </div>
               
               <div id="Paris" class="tabcontent">
-
+                <table>
+                    <tr>
+                        <th>Vendors</th>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                    </tr>
+                </table>
               </div>
               
               <div id="Tokyo" class="tabcontent">

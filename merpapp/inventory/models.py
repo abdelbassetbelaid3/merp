@@ -11,8 +11,10 @@ class Vendor(models.Model):
     vendor_id = models.AutoField(primary_key=True)
     full_name = models.CharField(max_length=100)
     #location_id = models.ForeignKey(Location,on_delete=models.SET_NULL)
+    category_id = models.ForeignKey(Categories,on_delete=models.CASCADE,default=0)
     shipping_cost = models.DecimalField(max_digits=12, decimal_places=2,default='0')
     lead_time = models.IntegerField()
+    contact = models.IntegerField(null=True, blank=True)
     note = models.TextField()
 
 class StorageLocation(models.Model):
@@ -28,13 +30,12 @@ class StorageLocation(models.Model):
 
 class Product(models.Model):
     product_id = models.AutoField(primary_key=True)
+    category_id = models.ForeignKey(Categories, on_delete=models.CASCADE,default=0)
     image = models.ImageField(upload_to='products/', blank=True)
     name = models.CharField(max_length=100)
     description = models.TextField(default='')
-    category_id = models.ForeignKey(Categories, on_delete=models.SET_NULL, null=True, blank=True)
     price = models.DecimalField(max_digits=12, decimal_places=2,default='0')
     cost = models.DecimalField(max_digits=12, decimal_places=2,default='0')
-    category_id = models.IntegerField(default='1')
     class Meta:
         db_table = 'inventory_product'
 
@@ -45,9 +46,19 @@ class Inventory(models.Model):
     quantity = models.IntegerField()
     # LOT NUMBER 
 
+
 class InventoryTransaction(models.Model):
     inventory_transaction_id = models.AutoField(primary_key=True)
     date = models.DateField()
+
+
+class Content(models.Model):
+    product_id = models.ForeignKey(Product,on_delete=models.CASCADE)
+    inventory_transaction_id = models.ForeignKey(InventoryTransaction,on_delete=models.CASCADE)
+
+
+
+
 class Purchase_order(models.Model):
     purchase_order_id = models.AutoField(primary_key=True)
     order_date = models.DateField()
@@ -67,15 +78,9 @@ class Purchase_items(models.Model):
 
 
 
-class Products(models.Model):
-    id = models.IntegerField(primary_key=True)
-    name = models.TextField(blank=True, null=True)  # This field type is a guess.
 
+class ProductsAndVendors(models.Model):
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
+    vendor_id = models.ForeignKey(Vendor, on_delete=models.CASCADE, null=True, blank=True)
     class Meta:
-        db_table = 'products'
-
-
-
-class ProductsAndVendors(models.Models):
-    product_id = models.ForeignKey(Product,on_delete=models.SET_NULL)
-    vendor_id = models.ForeignKey(Vendor,on_delete=models.SET_NULL)
+        unique_together = (('product_id', 'vendor_id'),)  # Enforce uniqueness constraint

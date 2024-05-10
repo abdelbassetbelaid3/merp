@@ -66,19 +66,19 @@
                 <tr>
                     <th>Image</th>
                     <th>Name</th>
-                    <th>Price</th>
+                    <th>Phone</th>
                     <th>Cost</th>
                     <th>category</th>
                     <th>On hand</th>
                 </tr>
-                {% for product in products %}  
+                {% for vendor in vendors %}  
                 <tr>
-                    <td><img src="{{ product.image }}" alt="{{ product.name }}"></td>
-                    <td>{{ product.name }}</td>
-                    <td>{{ product.price }}</td>
-                    <td>{{ product.cost }}</td>
+                    <td><img src="{{ vendor.image }}" alt="{{ vendor.full_name }}"></td>
+                    <td>{{ vendor.full_name }}</td>
+                    <td>{{ vendor.full_name }}</td>
+                    <td>{{ vendor.contact }}</td>
                 {% for category in categories %}
-                    {% if product.category_id == category.category_id %}
+                    {% if vendor.category_id == category.category_id %}
                             <td>{{ category.name }}</td>
                     {% endif %}
                 {% endfor %}

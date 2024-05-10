@@ -27,10 +27,19 @@ function openCity(evt, cityName) {
 
 
 function exportPDF() {
-  alert(1)
+
   const element = document.getElementById("data");
+  let options = {
+    margin: [10, 10, 10, 10], // Set margins to 0 for better content fit
+    filename: 'my-styled-report.pdf',
+    jsPDF: {
+      unit: 'pt', // Set unit to points for finer control (optional)
+      // Explore other jsPDF methods for specific styling needs
+    }
+  };
   html2pdf()
     .from(element)
+    .set(options)
     .save();
 }
 

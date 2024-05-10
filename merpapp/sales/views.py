@@ -34,6 +34,15 @@ def newCustomer(request):
 
 
 def customers(request):
-    return render(request,'customers.html')
+
+    locations = Locations.objects.all()
+    customers = Customers.objects.all()
+    serializerLocations = LocationsSerializer(locations, many=True)  # Serialize data
+    serializerCustomers = CustomersSerializer(customers, many=True)  # Serialize data
+    context = {
+        'customers': serializerCustomers.data,
+        'locations': serializerLocations.data,
+        }  
+    return render(request,'customers.html',context)
 
 

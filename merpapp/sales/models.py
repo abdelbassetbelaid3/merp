@@ -1,5 +1,7 @@
 from django.db import models
 from inventory.models import Product
+from django.utils import timezone
+import datetime
 # Create your models here.
 class Locations(models.Model):
     location_id = models.AutoField(primary_key=True)
@@ -15,9 +17,12 @@ class Customers(models.Model):
     location_id = models.ForeignKey(Locations, on_delete=models.SET_NULL, null=True, blank=True)
 class Orders(models.Model):
     order_id = models.AutoField(primary_key=True)
+    ref_code = models.TextField()
     order_status = models.CharField(max_length=20)
     Customers_id = models.ForeignKey(Customers, on_delete=models.SET_NULL, null=True, blank=True)
-
+    order_date = models.DateField(auto_now_add=True, default= timezone.now)  # Assuming order_date should be set on creation
+    delivered_date = models.DateField(default=None)  # Or use datetime.date.min for 
+    delivery_satus = models.CharField(max_length=20,null=True, blank=True,default='Draft')
 class OrderItems(models.Model):
     order_item_id = models.AutoField(primary_key=True)
     order_id = models.ForeignKey(Customers, on_delete=models.SET_NULL, null=True, blank=True)

@@ -13,21 +13,23 @@ body{
     display: flex;
     flex-direction: row;
     height: 100%;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
 }
-.bar i{
-    font-size: 25px;
-}
+
 .content i{
     font-size: 20px;
 }
 .bar{
-    background-color: #0E46A3;
+    background-color: #151515;
     color: aliceblue;
     width: 20%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
+    margin: 2vw 2vh;
+    border-radius: 13px;
+    overflow: hidden;
 }
 .bar h1{
     text-align: center;
@@ -38,12 +40,18 @@ body{
     flex-direction: column;
 }
 .bar a{
-    padding: 10px;
     color: #FFFBDA;
     text-decoration: none;
-    margin: 0 auto;
-    text-align: center;
     width: 100%;
+    padding: 12px 30px;
+}
+.bar i{
+    box-sizing: content-box;
+    font-size: 25px;
+    margin-right: 25px;
+    text-align: center;
+    width: 20px;
+    height: 20px;
 }
 .bar button{
     padding: 10px;
@@ -52,7 +60,6 @@ body{
     text-decoration: none;
     border: none;
     margin: 0 auto;
-    text-align: center;
     width: 100%;
 }
 .bar a:hover{
@@ -71,6 +78,9 @@ body{
 .content{
     background-color: #FFFBDA;
     width: 100%;
+    margin: 2vw 2vh;
+    border-radius: 13px;
+    overflow: scroll;
 }
 .content .one{
     background-color: #1565eb;
@@ -79,6 +89,7 @@ body{
     flex-direction: row;
     justify-content: space-between;
     height: 50px;
+    position: sticky;
 }
 .content .one h2{
     color: #FFFBDA;
@@ -146,7 +157,7 @@ body{
 .content .data table{
     border-collapse: collapse;
     width: 100%;
-    
+    overflow: scroll;
 }
 .content .data table th , td{
     text-align: left;
@@ -162,6 +173,9 @@ body{
 .content .data table tr:hover {
     background-color: #0E46A3;
     color: #f1f1f1;
+}
+.content .data table tr td img{
+    height: 50px;
 }
 
 #addNew{
