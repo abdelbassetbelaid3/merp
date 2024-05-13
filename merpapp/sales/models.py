@@ -15,6 +15,21 @@ class Customers(models.Model):
     customer_id = models.AutoField(primary_key=True)
     full_name = models.CharField(max_length=100)
     location_id = models.ForeignKey(Locations, on_delete=models.SET_NULL, null=True, blank=True)
+
+
+ORDER_STATUS_CHOICES = (
+    ('pending', 'Pending'),
+    ('shipped', 'Shipped'),
+    ('delivered', 'Delivered'),
+    # ... other statuses
+)
+
+DELIVERY_STATUS_CHOICES = (
+    ('draft', 'Draft'),
+    ('processing', 'Processing'),
+    ('shipped', 'Shipped'),
+    ('delivered', 'Delivered'),
+)
 class Orders(models.Model):
     order_id = models.AutoField(primary_key=True)
     ref_code = models.TextField()
@@ -22,7 +37,7 @@ class Orders(models.Model):
     customers_id = models.ForeignKey(Customers, on_delete=models.SET_NULL, null=True, blank=True)
     order_date = models.DateField(auto_now=True)  # Assuming order_date should be set on creation
     delivered_date = models.DateField(default=None)  # Or use datetime.date.min for 
-    delivery_satus = models.CharField(max_length=20,null=True, blank=True,default='Draft')
+    delivery_satus = models.CharField(max_length=20,null=True, choices=DELIVERY_STATUS_CHOICES, blank=True,default='Draft')
 class OrderItems(models.Model):
     order_item_id = models.AutoField(primary_key=True)
     order_id = models.ForeignKey(Customers, on_delete=models.SET_NULL, null=True, blank=True)

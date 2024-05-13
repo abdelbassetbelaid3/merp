@@ -1,4 +1,3 @@
-sidbr = document.getElementById('bar');
 datatb = document.getElementById('data');
 col = datatb.rows
 
@@ -45,12 +44,26 @@ function exportPDF() {
 
 
 function min(){
+  const sidbr = document.getElementById('bar');
+  const allLinks = sidbr.querySelectorAll("a");
     if (sidbr.style.width == '50px'){
         sidbr.style.width = '20%'
-        sidbr.style.transitionDuration = '1s'
+        sidbr.style.transitionDuration = '1s'        
+        // Loop through all links and modify their styles
+        for (const link of allLinks) {
+          link.style.padding= '12px 30px';
+          link.style.fontSize = "16px"; // Increase font size
+        }
     }else{
         sidbr.style.width = '50px'
         sidbr.style.transitionDuration = '1s'
+        // Loop through all links and modify their styles
+        for (const link of allLinks) {
+          link.style.padding= '12px 9px';
+          link.style.width = '50px';
+          link.style.textAlign = 'center';
+          link.style.fontSize = "0em"; // Increase font size
+        }
     }
      
 }
@@ -58,6 +71,9 @@ addnew = document.getElementById('addNew')
 function addNew(){
   addnew.style.display = 'block';
 
+}
+function close_window(){
+  addnew.style.display = 'none';
 }
 function exportTableToCSV(tableId, filename) {
     const table = document.getElementById(tableId);

@@ -47,3 +47,22 @@ def customers(request):
 
 
 
+from django.shortcuts import render, redirect
+
+def order_page(request):
+    draft_order = request.session.get('draft_order', {})
+    if request.method == 'POST':
+        product_id = request.POST.get('product')
+        quantity = int(request.POST.get('quantity', 0))  # Handle missing quantity
+        # Validate product_id and quantity (if needed)
+        if product_id and quantity > 0:
+            # Update draft order in session
+            draft_order.setdefault('items', []).append({'product': int(product_id), 'quantity': quantity})
+            subtotal = sum(item['quantity'] * Product.objects.get(pk=item['product']).price for item in draft_order.get('items', []))
+            draft_order['subtotal'] = subtotal
+            request.session['draft_order'] = draft_order
+            return redirect('order_page')  # Redirect to same page
+    else:
+        pass  # No action needed for GET requests
+    products = Product.objects.all()
+    return render(request, 'order_page.html', {'products': products, 'draft_order': draft_order})

@@ -17,7 +17,7 @@
         
         <div>
             <h1 onclick='min()'><i class="fa-solid fa-bars"></i>MERP</h1>
-            <a href="/inventory"><i class="fa-solid fa-warehouse"></i>  Inventory</a>
+            <a href="/inventory" class='a'><i class="fa-solid fa-warehouse"></i>  Inventory</a>
             <a href="/sales"><i class="fa-solid fa-dollar-sign"></i> Sales</a>
             <a href="/production"><i class="fa-solid fa-industry"></i> Producation</a>
             <a href="/finance"><i class="fa-solid fa-percent"></i> Finance</a>
@@ -41,7 +41,7 @@
         </div>
         <div class="two">
             <div class="update">
-                <button onclick="addNew()">New</button>
+                <button onclick="addNew()"><i class="fa-solid fa-plus"></i> New</button>
                 <button><i class="fa-solid fa-download"></i> Import</button>
                 <button onclick="exportTableToCSV('data', 'export.csv')"><i class="fa-solid fa-upload"></i> Export</button>
                 <button onclick="exportPDF()">Download PDF</button>
@@ -71,8 +71,12 @@
         </tr>
         {% for  order in orders %}
         <tr>
-            <td>{{order.ref_code}}</td>
-            <td>{{order.customers_id}}</td>
+            <td>{{order.ref_code}}</td>                
+            {% for customer in customers %}
+            {% if order.customers_id == customer.customer_id %}
+                    <td>{{ customer.full_name }}</td>
+            {% endif %}
+        {% endfor %}
             <td>{{order.order_date}}</td>
             <td>{{order.delivery_satus}}</td>
             <td>{{order.delivered_date}}</td>
@@ -85,46 +89,37 @@
         <form method="GET" action="newProduct">
             {% csrf_token %}
             <div class="head">
-                <h1>Create New product</h1>
-                <i class="fa-solid fa-xmark"></i>
+                <h1>New sale order</h1>
+                <i class="fa-solid fa-xmark" onclick='close_window()'></i>
             </div>
             <div class="main">
                 <div>
-                    <label for="name">Product name</label>
+                    <label for="name">Customer FullName</label>
                     <input type="text" name="name" id="name">
-                    <input type="checkbox" name="sold" id="sold">
-                    <label for="sold">Can be sold</label>
-                    <br>
-                    <input type="checkbox" name="purchase" id="purchase">
-                    <label for="purchase">Can be purchase</label>
                 </div>
-                <input type="file" name="image" id="image">
+                <div>
+                    <label for="">Order date</label>
+                    <input type="date" name="" id="">
+                    <label for="">Expected delivery date</label>
+                    <input type="date" name="" id="">
+                </div>
             </div>
 
 
             <div class="tab">
-                <a class="tablinks" onclick="openCity(event, 'London')">Genrel Information</a>
-                <a class="tablinks" onclick="openCity(event, 'Paris')">Paris</a>
-                <a class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</a>
+                <a class="tablinks" onclick="openCity(event, 'London')">Order Items</a>
+                <a class="tablinks" onclick="openCity(event, 'Paris')">Note</a>
               </div>
             <div id="London" class="tabcontent">
                 
-                <label for="price">Price</label>
-                <input type="number" name="price" id="price">
-                <label for="cost">Cost</label>
-                <input type="number" name="cost" id="cost">
-                <select name="category" id="category">
-                    <option value="Uncategorized">Uncategorized</option>
-                </select>
+                <table></table>
+
               </div>
               
               <div id="Paris" class="tabcontent">
 
               </div>
               
-              <div id="Tokyo" class="tabcontent">
-
-              </div>
 
               <input type="submit" value="Add Another">
               <input type="submit" value="Save">

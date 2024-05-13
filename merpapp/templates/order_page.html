@@ -1,0 +1,45 @@
+<h2>Add Items to Draft Order</h2>
+<form method="POST">
+  {% csrf_token %}  # Include CSRF token for security
+  <label for="product">Product:</label>
+  <select name="product" id="product">
+    {% for product in products %}
+      <option value="{{ product.id }}">{{ product.name }}</option>
+    {% endfor %}
+  </select>
+  <br>
+  <label for="quantity">Quantity:</label>
+  <input type="number" name="quantity" id="quantity" min="1" required>
+  <br>
+  <button type="submit">Add Item</button>
+</form>
+
+{% if draft_order %}
+  <h2>Draft Order</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in draft_order.get('items', []) %}
+        <tr>
+          <td>{{ Product.objects.get(pk=item.product).name }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ Product.objects.get(pk=item.product).price|currency }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      {% if draft_order.get('subtotal') %}
+        <tr>
+          <th colspan="2">Subtotal:</th>
+          <td>{{ draft_order.subtotal|currency }}</td>
+        </tr>
+      {% endif %}
+    </tfoot>
+  </table>
+{% endif %}
